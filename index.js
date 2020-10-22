@@ -10,6 +10,7 @@ app.use(bodyParser.json())
 
 conectDB(); //conectamos base de datos 
 require('./routes/user')(app)
+require('./routes/genre')(app)
 
 app.listen(8080,()=>{
     console.log('El servidor se levando correctamente ')
