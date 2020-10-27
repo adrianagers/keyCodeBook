@@ -57,3 +57,53 @@ exports.update = (req, res) => {
             }
         )
 }
+/**
+ * obtener todos los libros que tenemos
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.getAll = (req, res) => {
+    GenereModel.find()
+        .then((genres) => {
+            res.send(genres)
+        })
+        .catch((error) => {
+            res.status(500).send({
+                message: error.message
+            })
+        })
+
+}/**
+ * metodo para traer solo uno 
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.getOne = (req, res) => {
+    // console.log('aqui ta')
+    GenereModel.findById(req.params.id)
+       
+        .then((genre) => {
+            res.send(genre)
+        })
+        .catch((error) => {
+            res.status(500).send({
+                message: error.message
+            })
+        })
+}
+/**
+ * Metodo para eliminar el id
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.deleteOne=(req,res)=>{ 
+GenereModel.findByIdAndRemove(req.params.id)
+.then((generedelete) => {
+    res.send(generedelete)
+})
+.catch((error) => {
+    res.status(500).send({
+        message: error.message
+    })
+})
+}
